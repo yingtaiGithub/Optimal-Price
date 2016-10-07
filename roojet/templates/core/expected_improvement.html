@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}User: {{ request.user.username }}{% endblock %}
+
+{% block content %}
+<div class="container">
+
+  <div class="row">
+    <h1>Expected improvement:</h1>
+    <p>{{ expected_improvement }}</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Number of sales per day</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        {% for point in points %}
+        <tr>
+            <td>{{ point.value }}</td>
+            <td>${{ point.point.0 }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <table>
+        <thead>
+            <tr>
+                <th>Suggested price</th>
+                <th>Expected improvement</th>
+            </tr>
+        </thead>
+        <tr>
+            <td>${{ recommended_price }}</td>
+            <td>{{ expected_improvement.status.expected_improvement }}</td>
+        </tr>
+    </table>
+    <p>price suggested is, as the name implies, the next recommended price. Once there are more historical points, 
+    the process should converge around a value and later evaluations should not differ too much.</p>
+    <p>Expected improvement is correlated to how much will the function improve with the new price.</p>
+    <p>At the moment the function is f(price)=number_of_sales. This may be an oversimplification, but
+    should serve as a good starting point.</p>
+    <p>The number of sales is calculated based on a number of days, which is extracted based on order dates. It is not
+    accurate, just a rough approximation.</p>
+  </div>
+</div>
+{% endblock content %}

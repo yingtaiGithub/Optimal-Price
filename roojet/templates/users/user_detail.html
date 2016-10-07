@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static i18n %}
+{% load bootstrap3 %}
+{% block title %}User: {{ object.username }}{% endblock %}
+
+{% block content %}
+{% if object == request.user %}
+<div class="container text-center">
+<h1>My Profile</h1>
+
+    <table width="100%">
+    <tr>
+      {% if object.name %}<td>Name</td>{% endif %}
+      {% if object.name %}<td>{{ object.name }}</td>{% endif %}
+    </tr>
+    <tr>
+      <td>E-mail</td>
+      <td>{{ object.email }}</td>
+    </tr>
+    </table>
+  </div>
+
+
+<!-- Action buttons -->
+
+  <div class="text-center">
+    <a class="btn btn-primary" href="{% url 'users:update' %}">Update</a>
+    <!-- Your Stuff: Custom user template urls -->
+  </div>
+
+<!-- End Action buttons -->
+
+
+<div>
+<h3>Associated Shopify Account</h3>
+<a href="https://{{ object.shop_name }}.myshopify.com">https://{{ object.shop_name }}.myshopify.com</a>
+</div>
+
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">{% trans "unlink account" %}</button>
+
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Warning</h4>
+      </div>
+      <div class="modal-body">
+      <p>You are about to unlink your Shopify account. All your historical data will be lost. Are you sure? </p>
+        <form action="" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-md btn-primary btn-lg">{% trans "Yes" %}</button>
+        <form>
+        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endif %}
+{% endblock content %}
+

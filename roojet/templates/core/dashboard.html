@@ -1,0 +1,145 @@
+  {% extends "base.html" %}
+{% load static i18n %}
+{% load bootstrap3 plan_price %}
+{% block title %}Shop: {{ object.shop_name }}{% endblock %}
+
+{% block content %}
+
+<div class="dashboard">
+    {% if max_product_reached %}
+    <div class="alert alert-warning">
+        <strong>Upgrade your account</strong> Your current plan {{request.user.userplan.plan.name}} only allows {{request.user.userplan.plan.planquota_set.first.value}} products to be optimized. Upgrade your plan to optimize more products! <a href="{% url 'pricing' %}" >Upgrade now</a>
+    </div>
+    {% endif %}
+
+    <div class="alert alert-info">
+        <strong>Step 1:</strong> Set your products costs. Note: RooJet runs on a schedule of every hour to analyze and suggest new optimized prices. Check back in an hour to start optimizing prices.<br><br>
+        <strong>Step 2:</strong> Once you see the available "Optimized Price" you can click the Optimize Now button to instantly update the product price. 
+    </div>
+     
+
+    <div>
+    <h2>Overview</h2>
+    </div>
+    <div class="row overview">
+            <div class="col-sm-12">
+            <h2 class=""></h2>
+                <table class="table-design">
+                <thead>   
+                    <tr>
+                        <th class="text-center">Total Products</th>
+                        <th class="text-center">Increased Profit</th>
+                        <th class="text-center">Profit margin</th>
+                        <th class="text-center">Optimization Over Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center"><h3>{{ products|length }}</h3></td>
+                        <td class="text-center"><h3>${{ total_profit }}</h3></td>
+                        <td class="text-center"><h3>+{{ profit_margin|floatformat:-2 }}%</h3></td>
+                        <td class="text-center" ng-controller="ShopifyController" ng-init="total_chart({{products_serialized}}, {{historic}})">
+                        <canvas ng-if="data[0].length > 2" id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-legend="false" chart-series="series" chart-colours="colours" options="{omitXLabels: 'true'}"></canvas>
+                        <h3 ng-if="data[0].length < 2">Not Enough Data</h3>
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
+    </div>
+    </div>
+
+    <div class="row">
+            <div class="col-sm-12">
+            <h2 class="">My {{ object.shop_name }} Products</h2>
+            <form action="{% url 'core:optimized_price_results' %}" method="POST">
+                {% csrf_token %}
+                <table id="example" class="table-design">
+                <thead>   
+                    <tr>
+                        <th>Products</th>
+                        <th>Cost</th>
+                        <th colspan="2">Current Price</th>
+                        <th>Sales</th>
+                        <th>Optimized Price</th>
+                        <th>Optimize Now</th>
+                    </tr>
+                     <tr style="display:none;">
+                        <th>Products</th>
+                        <th>Cost</th>
+                        <th>Current Price</th>
+                        <th></th>
+                        <th>Sales</th>
+                        <th>Optimized Price</th>
+                        <th>Optimize Now</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                    <tr ng-controller="ShopifyController">
+                        <td>
+                        {% if product.number_of_sells < 1 or product|get_product_price:product.id == 0 %}<input type="checkbox" name="{{ product.shopify_variant_id }}" value="Ok" disabled>{% else %}<input type="checkbox" name="{{ product.shopify_variant_id }}" value="Ok">{% endif %}
+                        {% if product.historic_set.all.count < 2 %}{{ product.title }}</td>{% else %}<a href="#" ng-click="historic_chart({{product.pk}},{{historic}}, '{{ product.title }}')" data-toggle="modal" data-target="#myModal{{product.pk}}">{{ product.title }}</a></td>{% endif %}
+
+                        <td id="cost_{{product.shopify_variant_id}}">$ {{ product.cost }} </td>
+
+                        <td id="actual_price_{{product.id}}">$ {{ product.actual_shopify_price }}</td>
+                        
+                        <td>
+                        <input class="form-control" id="cost_update_{{product.shopify_variant_id}}" type="text">
+                        </td>
+
+
+                        <td>{{ product.number_of_sells }}</td>
+                        <td id="opimize_{{ product.id}}">{% if  product.number_of_sells > 0 %}{{ product|get_product_price:product.id }}{% else%}More Data Needed{% endif %}</td>
+                        <td id="button_{{ product.id}}">{% if  product.number_of_sells > 0 %} {% if product|get_product_price:product.id == "Price Updated" %} <a onclick="#" class="btn btn-grey btn-sm" style="cursor: default;">Product Updated</a> {% elif  product|get_product_price:product.id == 0 %} N/A {% else %}<a onclick=" OptimizeOnlyOne({{ product.shopify_variant_id }});"  class="btn btn-primary btn-sm">Optimize Now</a> {% endif %} {% else %}N/A{% endif %}</td>
+                    </tr>
+
+                    <script type="text/javascript">
+                        
+                        document.getElementById("cost_update_{{product.shopify_variant_id}}")
+                            .addEventListener("keyup", function(event) {
+                                CostUpdate({{product.shopify_variant_id}})
+                        });
+                    </script>
+                    {% endfor %}
+                </tbody>
+                </table>
+                <ul>
+                    {% for key, item in optimization.items %}
+                    <li>{{ key }}-{{ item.1 }}</li>
+                    {% endfor %}
+                </ul>
+                <div class="row">
+                    <div class="col-md-offset-7 col-md-5 text-right">
+                        <label>{% trans "Optimize by" %}</label>
+                         <select name="variable" id="variable">
+                            <option value="profit">Profit</option>
+                            <option value="revenue">Revenue</option>
+                        </select> 
+                      <button type="submit" class="btn btn-md btn-primary btn-sm">{% trans "Optimize Price!" %}</button>
+                    </div>
+                </div>
+              </form>
+            </div>
+    </div>
+</div>
+<!--<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+        <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Can not optimize this product</h4>
+      </div>
+      <div class="modal-body">
+        <p>We are sorry, but there is not enough data to optimize this product!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>-->
+
+{% endblock content %}

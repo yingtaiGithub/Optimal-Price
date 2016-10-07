@@ -1,0 +1,361 @@
+// project specific CSS goes here
+
+// Alert colors
+
+$base_color: #81D742;
+
+$brand_primary: darken(#81D742, 5%);
+$navbar_dark-color: #FFF;
+$gray: #CCC;
+$font-family-sans-serif: 'Raleway', sans-serif;
+
+@import "../../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+// @import "../../../bower_components/font-awesome/scss/font-awesome.scss";
+
+
+$white: #fff;
+$mint-green: #d6e9c6;
+$black: #000;
+$pink: #f2dede;
+$dark-pink: #eed3d7;
+$red: #b94a48;
+
+$gray: darken(#ccc, 20%);
+
+// bootstrap alert CSS, translated to the django-standard levels of
+// debug, info, success, warning, error
+
+.alert-debug {
+  background-color: $white;
+  border-color: $mint-green;
+  color: $black;
+}
+
+.alert-error {
+  background-color: $pink;
+  border-color: $dark-pink;
+  color: $red;
+}
+
+// This is a fix for the bootstrap4 alpha release
+
+@media (max-width: 47.9em) {
+  .navbar-nav .nav-item {
+    display: inline-block;
+    float: none;
+    width: 100%;
+  }
+
+  .navbar-nav .nav-item + .nav-item {
+    margin-left: 0;
+  }
+
+  .nav.navbar-nav.pull-right {
+    float: none !important;
+  }
+}
+
+// Display django-debug-toolbar.
+// See https://github.com/django-debug-toolbar/django-debug-toolbar/issues/742
+// and https://github.com/pydanny/cookiecutter-django/issues/317
+
+[hidden][style="display: block;"] {
+  display: block !important;
+}
+
+.bg-inverse {
+  background-color: #81d742;
+}
+
+div.main{
+  margin-top: 70px;
+  margin-bottom: 60px;
+}
+
+p.info{
+  padding: 15px;
+}
+
+.text-center{
+  text-align: center;
+}
+.text-right{
+  text-align: right;
+}
+
+.addshop{
+  .subdomain{
+    font-size: 24px;
+  }
+  input{
+    font-size: 20px;
+  }
+}
+
+.chart {
+  background-color: #fff;
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  color: #000;
+}
+
+.chart-widget {
+  margin: 25px;
+  .mychart {
+    height: 223px !important;
+  }
+}
+
+.nav.navbar-nav{
+  li {
+    a{
+      color: #fff;
+    }
+  }
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.navbar-toggle {
+  border-color: $white;
+  .icon-bar {
+    background-color: $white;
+  }
+}
+
+.footer {
+    padding: 60px 0;
+    background: #242a30;
+    text-align: center;
+    box-shadow: inset 0 100px 80px -80px rgba(0,0,0,.7);
+    -webkit-box-shadow: inset 0 100px 80px -80px rgba(0,0,0,.7);
+}
+
+/* Pricing Element Setting */
+
+.pricing-table {
+    list-style-type: none;
+    margin: 0 -10px;
+    padding: 0;
+    text-align: center;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.pricing-table > li {
+    float: left;
+    padding: 10px;
+}
+.pricing-table.col-4 > li {
+    width: 25%;
+}
+.pricing-table.col-3 > li {
+    width: 33.33333%;
+}
+.pricing-table .pricing-container {
+    overflow: hidden;
+    border-radius: 6px;
+    border: 1px solid $brand_primary;
+}
+.pricing-table h3 {
+    background: $brand_primary;
+    margin: 0;
+    color: #fff;
+    font-size: 14px;
+    padding: 15px 30px;
+}
+.pricing-table .features {
+  list-style-type: none;
+  margin: 0;
+  padding: 0 30px;
+}
+.pricing-table .features > li {
+    padding: 10px 0;
+}
+.pricing-table .features > li + li {
+    border-top: 1px solid $brand_primary;
+}
+.pricing-table .price {
+  width: 100%;
+  display: table;
+  background: rgba($base_color, .8);
+}
+.pricing-table .price .price-figure {
+    vertical-align: middle;
+    display: table-cell;
+    text-align: center;
+    height: 80px;
+}
+.pricing-table .price .price-number {
+    font-size: 28px;
+    color: $white;
+    display: block;
+}
+.pricing-table .price .price-tenure {
+    font-size: 12px;
+    color: $white;
+    display: block;
+    text-align: center;
+}
+.pricing-table .footer {
+  padding: 0px;
+  box-shadow: none;
+  background: rgba($base_color, 0.8);
+  .btn-inverse {
+    box-shadow: inset 0 -0.2em rgba(0,0,0,.1);
+  }
+}
+.pricing-table .highlight {
+    padding: 0px;
+    margin-top: -30px;
+}
+.pricing-table .highlight .features > li {
+    padding: 15px 0;
+}
+.pricing-table .highlight h3 {
+    padding: 20px 30px;
+}
+.pricing-table .highlight .price .price-figure {
+    height: 90px;
+}
+.pricing-table .highlight .price .price-number {
+    color: $white;
+}
+
+.table {
+  border-color: #e2e7eb;
+  border-radius: 3px;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+  border-color: $base_color;
+  padding: 10px 15px;
+}
+
+.table>thead>tr>th {
+  color: $base_color;
+  font-weight: 600;
+  border-bottom: 2px solid rgba($base_color, 0.3) !important;
+}
+
+.title{
+  padding-left: 5px;
+}
+
+.well {
+  background-color: transparent;
+  display: inline-block;
+  border: 1px solid $base_color;
+  color: $base_color;
+  border-radius: 0px;
+}
+
+.optimized {
+  width: 40%;
+  margin: auto;
+  float: none;
+}
+
+@media(max-width: $screen-sm-min) {
+  .optimized{
+    width: 100%;
+  }
+}
+
+@media (max-width: $screen-sm-min) {
+  .pricing-table.col-4 > li,
+  .pricing-table.col-3 > li {
+      width: 100%;
+  }
+  .pricing-table .highlight {
+    margin-top: 0 !important;
+    padding: 10px !important;
+  }
+}
+
+.m-b-30 {
+  margin-bottom: 30px;
+}
+
+.m-t-20 {
+  margin-top: 20px;
+}
+
+.btn {
+  // font-size: 14px;
+  // font-weight: 500;
+  // -webkit-border-radius: 3px;
+  // -moz-border-radius: 3px;
+  border-radius: 0px;
+}
+
+.btn.btn-inverse {
+  color: #fff;
+  background: $brand_primary;
+  border-color: $brand_primary;
+}
+
+.btn-block {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+table.table-design{
+  width: 100% !important;
+  thead{
+    tr{
+      background: $base_color;
+      color: $white;
+      th{
+        padding: 10px;
+        font-size: $font-size-large;
+      }
+    }
+  }
+  tbody{
+    tr{
+      td{
+        padding: 5px 0px;
+        border-bottom: solid #ccc 1px;
+      }
+    }
+  }
+}
+
+.dashboard{
+  // font-family: 'Raleway', sans-serif;
+  h2{
+    color: $gray;
+  }
+  form{
+    label{
+      color: #ccc;
+      padding: 5px;
+      font-size: 16px;
+    }
+    select{
+      border-radius: 0px !important;
+      border:1px solid #ccc;
+      vertical-align:top;
+      height:31px;
+      width: 150px;
+      text-align:center;
+      margin: 3px 5px;
+    }
+  }
+  .btn{
+    // min-width: 100px;
+  }
+
+  .overview{
+    .chart{
+      height: 70px;
+      max-width: 300px;
+    }
+  }
+}

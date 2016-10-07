@@ -1,0 +1,8 @@
+{% extends 'plans/base.html' %}
+{% load i18n %}
+{% load plan_price %}
+
+{% block page_title %}{% trans "Subscribe to these reports" %}{% endblock page_title %}
+{% block body %}
+    {% include "plans/plan_table.html" %}
+{% endblock %}

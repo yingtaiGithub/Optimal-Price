@@ -1,0 +1,43 @@
+{% load i18n %}
+{% load  plan_price %}
+<ul class="pricing-table col-4">
+    {% for plan in plan_list %}
+        {% if plan.available %}
+            <li class="fadeInUp contentAnimated finishAnimated">
+                <div class="pricing-container">
+                    <h3>{{ plan.name }}</h3>
+                    <div class="price">
+                        <div class="price-figure">
+                            {% if not plan.is_free %}
+                                {% for plan_pricing in plan.planpricing_set.all %}
+                                    <span class="price-number">${{ plan_pricing|get_price:plan.name }}&nbsp;{{ CURRENCY }}</span>
+                                {% endfor %}
+                                {% else %}
+                                    <span class="price-number">FREE</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <ul class="features">
+                        {% for plan_quota in plan.planquota_set.all %}
+                            {% if plan_quota.quota.is_boolean %}
+                                <li>{{ plan_quota.quota.name }} <i class="fa fa-check"></i></li>
+                                {% else %}
+                                    <li>{{ plan_quota|get_value }} {{ plan_quota.quota.name }}</li>
+                            {% endif %}
+                        {% endfor %}
+                        <li>10 Day Free Trial</li>
+                    </ul>
+                    <div class="footer">
+                        {% for plan_pricing in plan.planpricing_set.all %}
+                            {% if plan|get_shop:request %}
+                                <span class="btn btn-block" style="cursor: default;">{% trans "Current Plan" %}</span>
+                            {% else %}
+                                <a href="{% url 'core:shopify_subscribe' pk=plan_pricing.pk %}" class="btn btn-inverse btn-block">Sign Up</a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </li>
+        {% endif %}
+    {% endfor %}
+</ul>

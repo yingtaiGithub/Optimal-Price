@@ -1,0 +1,27 @@
+a {
+	text-decoration: none;
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+[class*="col-"] {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.mg-30-top {
+	margin-top: 30px;
+}
+
+.mg-30-bottom {
+	margin-bottom: 30px;
+}
+
+.mg-15-bottom {
+	margin-bottom: 15px;
+}
+
+.clear {
+	clear: both;
+}

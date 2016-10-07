@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static i18n %}
+{% load bootstrap3 plan_price %}
+{% block title %}Welcome to Roojet{% endblock %}
+
+{% block content %}
+
+<div class="dashboard well" style="margin-left: 18%; width: 64%">
+Thank you for choosing RooJet Pricing Optimization. <br><br>
+RooJet will optimize your products prices so that you make the most money!<br><br>
+RooJet automatically attaches to each one of your products and analyzes where your prices should be. In order to update your prices and see the suggested optimized pries, <a href="{% url 'core:dashboard' %}">{% trans "CLICK HERE" %}</a>.
+</div>
+
+{% endblock content %}

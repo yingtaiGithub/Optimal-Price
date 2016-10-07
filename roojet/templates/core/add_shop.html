@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static bootstrap3 i18n %}
+
+{% block title %}User: {{ object.username }}{% endblock %}
+
+{% block content %}
+<div class="addshop">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>{% trans "Connect Shopify Store" %}</h1>
+      <p class="info bg-info">{% trans "In order to connect Roojet to Shopify, please provide the store name" %} <strong>e.g. mystore.myshopify.com</strong></p>
+    </div>
+  </div>
+  <form action="" method="POST">
+    {% csrf_token %}
+    <div class="row">
+    <div class="col-xs-3 col-xs-offset-3">
+          {% bootstrap_field form.shop_name show_label=False %}
+    </div>
+    <div class="col-xs-6 subdomain">
+      .myshopify.com
+    </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 text-center">
+        <button type="submit" class='btn btn-primary btn-lg'>{% trans "Connect Store" %}</button>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock content %}

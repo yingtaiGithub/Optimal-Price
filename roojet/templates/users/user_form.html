@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static i18n %}
+{% load bootstrap3 %}
+{% block title %}User: {{ object.username }}{% endblock %}
+
+{% block content %}
+{% if object == request.user %}
+<div class="container">
+
+<div class="row">
+  <div class="col-md-offset-3 col-md-12">
+    <h1 class="">My Profile</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8">
+    <form class="form-horizontal" method="post" action="{% url 'users:detail' %}">
+        {% csrf_token %}
+        {% bootstrap_form form layout='horizontal' %}
+        <div class="row">
+          <div class="col-md-offset-3 col-md-1">
+            <button type="submit" class="btn btn-primary btn-lg">{% trans "Update user Profile" %}</button>
+          </div>
+        </div>
+    </form>
+  </div>
+</div>
+<p>&nbsp;</p>
+<div class="row">
+  <div class="col-md-offset-2 col-md-9">
+  {% comment %}
+  {% endcomment %}
+    
+    {% if object.shop_name != '' %}
+    <h3>Associated Shopify Account</h3>
+    <a href="https://{{ object.shop_name }}.myshopify.com">https://{{ object.shop_name }}.myshopify.com</a>
+    {% comment %}
+      
+    {% verbatim %}
+    <h4>Pixel tracking</h4>
+    <p>To add pixel tracking to your shopify checkout page add the following code:<br><textarea id='textarea1' onclick='SelectAll("textarea1")' rows='4' cols='60' readonly ng-non-bindable>{% for line_item in order.line_items %}
+    <img src="https://app.roojet.com/pixel/?variant_id={{ line_item.variant_id }}" style="display: none"/>
+    {% endfor %} 
+    </textarea>
+    </p>
+    <p>To add pixel tracking to your shopify product page add the following code and replace XXX with your product ID:<br><textarea id='textarea2'onclick='SelectAll("textarea2")' rows='4' cols='60' readonly><img src="https://app.roojet.com/pixel/?product_id=XXXXXXXXXX" style="display: none" /></textarea></p>
+    <p></p>
+    {% endverbatim %}
+    {% endcomment %}
+    <br><br>
+    <p><button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal">{% trans "Unlink account" %}</button></p>
+    <br>
+    <p>To cancel your account please email  <a href="mailto:mavmcquin@gmail.com ">here</a></p>
+
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Warning</h4>
+          </div>
+          <div class="modal-body">
+          <p>You are about to unlink your Shopify account. All your historical data will be lost. Are you sure?</p>
+            <form action="{% url 'users:remove_view' %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-md btn-primary">{% trans "Yes" %}</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
+{% endblock content %}

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static i18n %}
+{% load bootstrap3 plan_price %}
+{% block title %}FAQ - Roojet{% endblock %}
+
+{% block content %}
+
+<div class="dashboard">
+<h1>FAQ</h1>
+
+<p><h3>Why does the "Optimize Now" column say N/A after I have installed RooJet?</h3>
+RooJet runs on a schedule of every hour to analyze and suggest new optimized prices.  If you would like to override this you may use the checkboxes on the left of your products and then click “Optimize Prices” at the bottom right of your dashboard.  You can then either choose the products you would like to update or click “Back to Dashboard”
+</p>
+<p><h3>
+The “Optimized Price” column says “More Data Needed” for my products that do not have any sales.</h3>
+
+Yes - RooJet needs at least one sale to feed our prediction engine in order to predict the next best optimized price for that item. 
+</p>
+
+<p><h3>Where does RooJet get the data?</h3>
+
+We connect your RooJet account to the Shopify API to analyze your unique data and make specific pricing predictions for your store.
+</p>
+<p><h3>
+Will RooJet ever  price below my cost?</h3>
+
+
+No - you are able to set your cost of good in your dashboard so that RooJet will never price your products at a loss. 
+</p>
+<p><h3>
+How Long does RooJet take?</h3>
+
+It all depends, but the more volume your store does, the faster the data will be able to be optimized. 
+</p>
+<p><h3>
+How long is my free trial?</h3>
+
+Every new RooJet account enjoys a 10 day free trial. 
+</p>
+
+<p><h3>
+How do I upgrade my RooJet account to handle more products?</h3>
+
+Please click on the Account and choose the appropriate plan.
+</p>
+
+<p><h3>
+I have more questions - who should I contact?</h3>
+
+Please feel free to ask any questions you may have to scott@roojet.com
+</p>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,451 @@
+// bootstrap alert CSS, translated to the django-standard levels of
+// debug, info, success, warning, error
+
+.alert-debug {
+  background-color: $white;
+  border-color: $mint-green;
+  color: $black;
+}
+
+.alert-error {
+  background-color: $pink;
+  border-color: $dark-pink;
+  color: $red;
+}
+
+// Display django-debug-toolbar.
+// See https://github.com/django-debug-toolbar/django-debug-toolbar/issues/742
+// and https://github.com/pydanny/cookiecutter-django/issues/317
+
+[hidden][style="display: block;"] {
+  display: block !important;
+}
+
+.filter-times{
+  select{
+    height: 40px;
+  }
+  button{
+    margin-top: 32px;
+  }
+}
+
+.customcenter {
+  border-color: $black;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  margin-bottom: 5%;
+}
+
+.custombottom{
+  vertical-align: bottom;
+  width: 100%;
+  height: 60px;
+}
+
+.projects-content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.project-box {
+  width: 20%;
+  position: relative;
+  padding: 0px;
+  margin: 0px 15px 20px;
+  background: $white;
+  .btn-flat {
+    color: $white;
+    background: $green;
+  }
+}
+
+.project-description {
+  padding: 0px 20px;
+  margin-bottom: 80px;
+  text-align: justify;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+}
+
+.project-link {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  margin: 10px 0px;
+}
+
+.project-head {
+  padding: 10px 15px;
+  margin-bottom: 30px;
+  background: #6d7983;
+  overflow: hidden;
+}
+
+.project-title {
+  text-align: center;
+  font-family: $font-basic;
+  color: $white;
+  font-weight: 400;
+  margin: 0px;
+  text-align: left;
+  line-height: 20px;
+  a {
+    color: #fff;
+    font-size: 24px;
+  }
+}
+
+.project-company {
+  text-align: center;
+  font-family: $font-basic;
+  font-weight: 400;
+  font-size: 18px;
+  margin: 0px;
+  a {
+    color: #fff;
+    font-size: 17px;
+  }
+}
+
+.page-header-fixed {
+  padding: 0px;
+}
+
+.page-topmenu {
+  padding-top: 94px;
+}
+
+.parallax-home {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  .parallax-content {
+    z-index: 1000;
+    .btn-flat {
+      font-size: 1.7em;
+      margin: 10px 15px;
+    }
+  }
+  .parallax-img {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1000;
+  }
+}
+
+.parallax-img {
+  background: url("../images/meeting.jpg") no-repeat fixed 50% 50%;
+  background-size: cover;
+}
+
+.bg-parallax {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1000;
+  background: rgba(0, 172, 172, 0.9);
+}
+
+.parallax-content {
+  text-align: center;
+  overflow: hidden;
+  position: absolute;
+  top: 30%;
+  left: 20%;
+  padding: 0px 15px;
+}
+
+.parallax-body {
+  font-family: $font-basic;
+  padding: 10px 15px;
+  color: $white;
+  h1 {
+    font-weight: 600;
+    font-size: 4.5em;
+    color: $white;
+  }
+  p {
+    font-size: 2.5em;
+    font-weight: 300;
+  }
+}
+
+
+.btn-flat {
+  background: transparent;
+  padding: 10px 15px;
+  color: $white;
+  border: 1px solid $white;
+  &:hover {
+    color: $white;
+  }
+}
+
+.btn-flat-inverse {
+  background: $green;
+  color: $white;
+  padding: 10px 15px;
+  &:hover {
+    color: $white;
+  }
+}
+
+.logo {
+  border: none !important;
+  content: url('../images/swapps.ico');
+  width: 27px;
+  height: 27px;
+  top: 0 !important;
+  margin-right: 0px !important;
+}
+
+.navbar-logo {
+  border: none;
+  content: url('../images/swapps.ico');
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.navbar-parallax {
+  background: transparent !important;
+  box-shadow: 0 0 2px rgba(250,250, 250, 1);
+  padding: 0px;
+  .navbar-brand {
+    font-size: 18px;
+    font-weight: 500;
+    color: $white;
+    width: auto;
+  }
+  .nav>li>a:focus, .nav>li>a:hover {
+    color: #333;
+    background: transparent;
+  }
+}
+.footer-parallax {
+  width: 100%;
+  margin: 10px 0px;
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+  background: transparent;
+  color: $white;
+  font-family: $font-basic;
+  font-weight: 300;
+  font-size: 1.3em;
+}
+
+.footer {
+  width: 100%;
+  overflow: hidden;
+  background: $darker_black;
+  margin: 0px;
+  color: $white;
+  color: $white;
+  font-size: 1.3em;
+  font-weight: 300;
+  font-family: $font-basic;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 0;
+}
+
+.copy {
+  i {
+    color: $dark_red;
+  }
+  a {
+    color: $white;
+  }
+}
+
+.footer-container {
+  padding-left: 15px;
+  margin-left: 10px;
+  padding-right: 20px;
+  ul {
+    padding-left: 0px;
+    margin: 0px;
+    li {
+      display: inline;
+      margin-right: 15px;
+    }
+  }
+}
+
+.page-parallax {
+  height: 100%;
+}
+
+.navbar-admin {
+  padding: 0px;
+}
+
+.top-menu {
+  .nav>li>a {
+    color: $white;
+  } 
+  a {
+    font-size: 1.3em;
+    color: $white;
+    i {
+      line-height: 23px;
+    }
+  }
+}
+
+.preview-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin: 0px 6.6%;
+}
+
+.preview-content {
+  margin: 0px 0px 20px;
+}
+
+.project-overview {
+  width: 100%;
+  margin: 30px 0px;
+  .title-project {
+    margin: 15px .0px;
+    border-bottom: 1px solid #00acac;
+    padding: 10px 0px;
+    display: inline-block;
+    font-size: 32px;
+    font-weight: 300;
+  }
+}
+
+.project-overview-head {
+  select {
+    border: 0px;
+    height: 31px;
+    padding: 0px 10px;
+    background: $green;
+    color: #fff;
+    font-size: 15px;
+  }
+  input {
+    border: 0px;
+    padding: 5px 10px;
+    background: $green;
+    color: #fff;
+    font-size: 15px;
+  }
+}
+
+.project-overview-status {
+  clear: both;
+  .total-box{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    .widget-stats {
+      min-height: 150px;
+      clear: both;
+      h4 {
+        font-size: 18px;
+        display: inline;
+      }
+      p {
+        font-size: 15px;
+      }
+      small {
+        font-size: 16px;
+      }
+      .description {
+        margin-bottom: 20px;
+        a{
+         color: #FFF;
+          text-decoration: underline;
+        }
+      }
+      .stats-link{
+        position: absolute;
+        bottom: 16px;
+        width: 100%;
+        a{
+          margin-right: 16px;
+        }
+      }
+    }
+  }
+}
+
+.project-overview-chart {
+  width: 100%;
+  clear: both;
+  .widget-chart .widget-chart-content {
+    margin-left: 0px;
+    width: 100%;
+    #bar {
+      width: 100%;
+      height:250px;
+    }
+    .chart-container {
+      min-height: 250px;
+      overflow: hidden;
+    }
+  }
+}
+
+
+.project-overview-issue {
+  font-size: 16px;
+  font-weight: 400;
+  .panel {
+    .panel-body{
+      max-height: 450px;
+      overflow: auto;
+    }
+  }
+  li {
+    margin-top: 15px;
+  }
+}
+
+.project-overview-toggl {
+  .panel {
+    .panel-body {
+      max-height: 400px;
+      overflow: auto;
+    }
+  }
+}
+
+.title-content {
+  margin-top: 0px;
+  margin-bottom: 15px;
+  font-weight: 300;
+}
+
+#spin {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  background: #D9E0E7;
+  .spinner{ 
+    border: none;
+  }
+}
+
+.modal {
+  span {
+    text-overflow: ellipsis;
+    white-space: normal;
+  }
+}

@@ -1,0 +1,27 @@
+{% load i18n %}
+{% load  plan_price %}
+<table class="table">
+    <thead>
+    <th>{% trans "Name" %}</th>
+    <th>{% trans "Free Trial" %}</th>
+    {% comment %}<th>{% trans "VAT" %}</th>
+    <th>{% trans "VAT total" %}</th>{% endcomment %}
+    <th>{% trans "Total" %}</th>
+    </thead>
+    <tbody>
+    <td>Plan {{ order.plan.name }}</td>
+    <td>10 days Free Trial</td>{# widthratio is used for division #}
+    {% comment %}<td>{% ifequal order.tax None %}n/a{% else %}{{ order.tax }} %{% endifequal %}</td>
+    <td>{% ifequal order.tax_total None %}n/a{% else %}{{ order.tax_total }} {{ order.currency }}{% endifequal %}</td>{% endcomment %}
+    <td class="number total">{{ order|get_price:order.plan.name }} {{ order.currency }}</td>
+    </tbody>
+</table>
+
+{% ifequal order.tax None %}
+    <!--<h2>{% trans "EU VAT" %}</h2>-->
+    <!--<div class="alert alert-info">-->
+        <!--{% blocktrans %}-->
+            <!--VAT is not applied to order.-->
+        <!--{% endblocktrans %}-->
+    <!--</div>-->
+{% endifequal %}
